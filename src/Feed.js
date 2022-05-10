@@ -18,28 +18,27 @@ const Feed = () => {
     }, [])
 
     async function getPosts() {
-        console.log("running get posts")
-        const querySnapshot = await getDocs(collection(db, "asdfas"));
+        const querySnapshot = await getDocs(collection(db, "allPost"));
+        const data = [];
         querySnapshot.forEach((doc) => {
-            setPosts([...posts, doc.data()]);
-            console.log(doc.data(), posts)
+            data.push(doc.data());
         })
-        console.log(querySnapshot);
+        setPosts([...data]);
     }
 
     async function sendPost(e) {
         e.preventDefault();
         const rand = Math.floor(Math.random() * 100000);
-        console.log("sub", rand)
 
         try {
-            const docRef = await addDoc(collection(db, "asdfas"), {
+            const docRef = await addDoc(collection(db, "allPost"), {
                 name: "John estacio",
                 description: "test",
                 message: input,
                 id: rand
             });
-            console.log("Document written with ID: ", docRef.id)
+            setInput("");
+            getPosts();
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -50,7 +49,9 @@ const Feed = () => {
                 <div className="feed__input">
                     <CreateIcon />
                     <form action="">
-                        <input type="text" placeholder="Start a post" value={input} onChange={e => setInput(e.target.value)} />
+                        <input type="text" placeholder="Start a post" value={input} onChange={e => {
+                            setInput(e.target.value)
+                        }} />
                         <button onClick={sendPost} type="submit">Send</button>
                     </form>
                 </div>
@@ -61,10 +62,9 @@ const Feed = () => {
                     <InputOption Icon={CalendarViewDayIcon} title="Write article" color="#7fc15e" />
                 </div>
             </div>
-            {posts.map((post) => {console.log("posts", posts)
+            {posts.map((post) => {
                 return <Post key={post.id} name={post.name} message={post.message} description={post.description}/>
             })}
-            {/* <Post name="John Estacio" description="test post" message="this is a test post" /> */}
         </div>
     )
 }
