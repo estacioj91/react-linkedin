@@ -8,7 +8,7 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import Post from './Post';
 import { db } from './firebase.js';
-import { collection, getDocs, addDoc} from "firebase/firestore";
+import { collection, getDocs, addDoc, FieldValue} from "firebase/firestore";
 
 const Feed = () => {
     const [posts, setPosts] = useState([]);
@@ -18,7 +18,7 @@ const Feed = () => {
     }, [])
 
     async function getPosts() {
-        const querySnapshot = await getDocs(collection(db, "allPost"));
+        const querySnapshot = await getDocs(collection(db, "posts"));
         const data = [];
         querySnapshot.forEach((doc) => {
             data.push(doc.data());
@@ -29,13 +29,15 @@ const Feed = () => {
     async function sendPost(e) {
         e.preventDefault();
         const rand = Math.floor(Math.random() * 100000);
-
+        const date = new Date();
+        console.log(date);
         try {
-            const docRef = await addDoc(collection(db, "allPost"), {
+            const docRef = await addDoc(collection(db, "posts"), {
                 name: "John estacio",
                 description: "test",
                 message: input,
-                id: rand
+                id: rand,
+                timestamp: date
             });
             setInput("");
             getPosts();
@@ -62,7 +64,8 @@ const Feed = () => {
                     <InputOption Icon={CalendarViewDayIcon} title="Write article" color="#7fc15e" />
                 </div>
             </div>
-            {posts.map((post) => {
+            {posts.sort((a,b) => {
+                return new Date(b.timestamp.seconds) - new Date(a.timestamp.seconds);}).map((post) => {
                 return <Post key={post.id} name={post.name} message={post.message} description={post.description}/>
             })}
         </div>
