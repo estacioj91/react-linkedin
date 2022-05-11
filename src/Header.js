@@ -18,15 +18,15 @@ function Header() {
                 <img src={logo} alt="linkedin logo"/>
                 <div className="header__search">
                     <SearchIcon/>
-                    <input type="text"/>
+                    <input type="text" placeholder="Search"/>
                 </div>
             </div>
             <div className="header__right">
                 <HeaderOption Icon={HomeIcon} title="Home"></HeaderOption>
                 <HeaderOption Icon={SupervisorAccountIcon} title="My Network"></HeaderOption>
-                <HeaderOption Icon={BusinessCenterIcon} title="My Network"></HeaderOption>
-                <HeaderOption Icon={ChatIcon} title="My Network"></HeaderOption>
-                <HeaderOption Icon={NotificationsIcon} title="My Network"></HeaderOption>
+                <HeaderOption Icon={BusinessCenterIcon} title="Jobs"></HeaderOption>
+                <HeaderOption Icon={ChatIcon} title="Messaging"></HeaderOption>
+                <HeaderOption Icon={NotificationsIcon} title="Notifications"></HeaderOption>
                 <HeaderOption avatar={headShot} title="me"></HeaderOption>
             </div>
         </div>
