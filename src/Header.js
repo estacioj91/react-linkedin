@@ -8,9 +8,18 @@ import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { useDispatch } from 'react-redux';
+import { auth } from './firebase.js';
+import { logout } from './features/userSlice.js';
 
 
 function Header() {
+    const dispatch = useDispatch();
+    const logoutOfApp = () => {
+        dispatch(logout());
+        auth.signOut();
+    }
+
     const headShot = "https://compassionate-leakey-e9b16b.netlify.app/images/IG_Sonny.jpeg";
     return (
         <div className="header">
@@ -27,7 +36,7 @@ function Header() {
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs"></HeaderOption>
                 <HeaderOption Icon={ChatIcon} title="Messaging"></HeaderOption>
                 <HeaderOption Icon={NotificationsIcon} title="Notifications"></HeaderOption>
-                <HeaderOption avatar={headShot} title="me"></HeaderOption>
+                <HeaderOption avatar={headShot} title="me" onClick={logoutOfApp}></HeaderOption>
             </div>
         </div>
     )
