@@ -2,9 +2,11 @@ import React from 'react';
 import { Avatar } from '@material-ui/core';
 import './Sidebar.css';
 import background from './assets/sidebar-img.jpg';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectUser} from './features/userSlice.js';
+
 function Sidebar() {
-    const headShot = "https://compassionate-leakey-e9b16b.netlify.app/images/IG_Sonny.jpeg";
-    
+    const user = useSelector(selectUser)
     const recentItem = (topic) => {
         return (
             <div className="sidebar__recentItem">
@@ -17,9 +19,9 @@ function Sidebar() {
         <div className="sidebar">
             <div className="sidebar__top">
                 <img src={background} alt=""/>
-                <Avatar className="sidebar__avatar" src={headShot}/>
-                <h2>John Estacio</h2>
-                <h4>John.estacio@gmail.com</h4>
+                <Avatar className="sidebar__avatar" src={user.profileUrl}>{user.displayName ? user.displayName[0]: ''}</Avatar>
+                <h2>{user.displayName}</h2>
+                <h4>{user.email}</h4>
             </div>
             <div className="sidebar__stats">
                 <div className="sidebar__stat">

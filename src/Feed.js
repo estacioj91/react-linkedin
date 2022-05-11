@@ -30,7 +30,6 @@ const Feed = () => {
         e.preventDefault();
         const rand = Math.floor(Math.random() * 100000);
         const date = new Date();
-        console.log(date);
         try {
             const docRef = await addDoc(collection(db, "posts"), {
                 name: "John estacio",
