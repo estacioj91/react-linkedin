@@ -9,10 +9,14 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import Post from './Post';
 import { db } from './firebase.js';
 import { collection, getDocs, addDoc, FieldValue} from "firebase/firestore";
+import {useDispatch, useSelector} from 'react-redux';
+import {selectUser} from './features/userSlice.js';
 
 const Feed = () => {
     const [posts, setPosts] = useState([]);
-    const [input, setInput] = useState("")
+    const [input, setInput] = useState("");
+    const user = useSelector(selectUser);
+
     useEffect(() => {
         getPosts();
     }, [])
@@ -32,11 +36,12 @@ const Feed = () => {
         const date = new Date();
         try {
             const docRef = await addDoc(collection(db, "posts"), {
-                name: "John estacio",
-                description: "test",
+                name: user?.displayName,
+                description: user?.email,
                 message: input,
                 id: rand,
-                timestamp: date
+                timestamp: date,
+                photoUrl: user.photoUrl
             });
             setInput("");
             getPosts();
@@ -65,7 +70,7 @@ const Feed = () => {
             </div>
             {posts.sort((a,b) => {
                 return new Date(b.timestamp.seconds) - new Date(a.timestamp.seconds);}).map((post) => {
-                return <Post key={post.id} name={post.name} message={post.message} description={post.description}/>
+                return <Post key={post.id} name={post.name} message={post.message} description={post.description} photoUrl={post.photoUrl}/>
             })}
         </div>
     )

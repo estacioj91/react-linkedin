@@ -36,7 +36,7 @@ function Header() {
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs"></HeaderOption>
                 <HeaderOption Icon={ChatIcon} title="Messaging"></HeaderOption>
                 <HeaderOption Icon={NotificationsIcon} title="Notifications"></HeaderOption>
-                {user ? (<HeaderOption avatar={user?.photoUrl || user?.displayName || ''} user={user?.displayName} onClick={logoutOfApp} title="me"></HeaderOption>) : ''}
+                {user ? (<HeaderOption avatar={user?.photoUrl || user?.displayName || ''} user={user?.displayName} onClick={logoutOfApp} title="logout"></HeaderOption>) : ''}
             </div>
         </div>
     )
