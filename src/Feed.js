@@ -9,9 +9,9 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import Post from './Post';
 import { db } from './firebase.js';
 import { collection, getDocs, addDoc, FieldValue} from "firebase/firestore";
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 import {selectUser} from './features/userSlice.js';
-
+import FlipMove from "react-flip-move";
 const Feed = () => {
     const [posts, setPosts] = useState([]);
     const [input, setInput] = useState("");
@@ -68,10 +68,12 @@ const Feed = () => {
                     <InputOption Icon={CalendarViewDayIcon} title="Write article" color="#7fc15e" />
                 </div>
             </div>
-            {posts.sort((a,b) => {
-                return new Date(b.timestamp.seconds) - new Date(a.timestamp.seconds);}).map((post) => {
-                return <Post key={post.id} name={post.name} message={post.message} description={post.description} photoUrl={post.photoUrl}/>
-            })}
+            <FlipMove>
+                {posts.sort((a,b) => {
+                    return new Date(b.timestamp.seconds) - new Date(a.timestamp.seconds);}).map((post) => {
+                    return <Post key={post.id} name={post.name} message={post.message} description={post.description} photoUrl={post.photoUrl}/>
+                })}
+            </FlipMove>
         </div>
     )
 }

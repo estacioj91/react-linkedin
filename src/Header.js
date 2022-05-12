@@ -23,20 +23,22 @@ function Header() {
 
     return (
         <div className="header">
-            <div className="header__left">
-                <img src={logo} alt="linkedin logo"/>
-                <div className="header__search">
-                    <SearchIcon/>
-                    <input type="text" placeholder="Search"/>
+            <div className="header__wrapper">
+                <div className="header__left">
+                    <img src={logo} alt="linkedin logo"/>
+                    <div className="header__search">
+                        <SearchIcon/>
+                        <input type="text" placeholder="Search"/>
+                    </div>
                 </div>
-            </div>
-            <div className="header__right">
-                <HeaderOption Icon={HomeIcon} title="Home"></HeaderOption>
-                <HeaderOption Icon={SupervisorAccountIcon} title="My Network"></HeaderOption>
-                <HeaderOption Icon={BusinessCenterIcon} title="Jobs"></HeaderOption>
-                <HeaderOption Icon={ChatIcon} title="Messaging"></HeaderOption>
-                <HeaderOption Icon={NotificationsIcon} title="Notifications"></HeaderOption>
-                {user ? (<HeaderOption avatar={user?.photoUrl || user?.displayName || ''} user={user?.displayName} onClick={logoutOfApp} title="logout"></HeaderOption>) : ''}
+                <div className="header__right">
+                    <HeaderOption Icon={HomeIcon} title="Home"></HeaderOption>
+                    <HeaderOption Icon={SupervisorAccountIcon} title="My Network"></HeaderOption>
+                    <HeaderOption Icon={BusinessCenterIcon} title="Jobs"></HeaderOption>
+                    <HeaderOption Icon={ChatIcon} title="Messaging"></HeaderOption>
+                    <HeaderOption Icon={NotificationsIcon} title="Notifications"></HeaderOption>
+                    {user ? (<HeaderOption avatar={user?.photoUrl || user?.displayName || ''} user={user?.displayName} onClick={logoutOfApp} title="logout"></HeaderOption>) : ''}
+                </div>
             </div>
         </div>
     )
