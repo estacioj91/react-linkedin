@@ -15,3 +15,12 @@
 .inputOption > h4 {
     margin-left: 5px;
 }
+
+@media(max-width: 420px) {
+    .MuiSvgIcon-root {
+        font-size: 1rem!important;
+    }
+    .inputOption > h4 {
+        font-size: 12px;
+    }
+}

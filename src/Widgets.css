@@ -49,3 +49,8 @@
     font-size: 12px;
     color: gray;
 }
+@media(max-width: 820px) {
+    .widgets {
+        display: none;
+    }
+}

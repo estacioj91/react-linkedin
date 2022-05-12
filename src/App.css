@@ -9,4 +9,16 @@
     margin: 24px auto;
     height: 100%;
     max-width: 1200px;
+    padding: 0 10px;
+}
+
+@media(max-width: 820px) {
+    .app__body {
+        flex-direction: column;
+    }
+}
+@media(max-width: 420px) {
+    .app__body {
+        max-width: 370px;
+    }
 }
