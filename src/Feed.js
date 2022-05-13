@@ -53,7 +53,7 @@ const Feed = () => {
         <div className="feed">
             <div className="feed__inputContainer">
                 <div className="feed__input">
-                    <CreateIcon />
+                    <CreateIcon onClick={sendPost}/>
                     <form action="">
                         <input type="text" placeholder="Start a post" value={input} onChange={e => {
                             setInput(e.target.value)

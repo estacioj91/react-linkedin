@@ -104,7 +104,7 @@
 
 @media(max-width: 820px) {
     .sidebar {
-        position: none;
+        position: inherit;
     }
     .sidebar__bottom {
         margin-bottom: 10px;

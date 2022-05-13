@@ -21,7 +21,7 @@
     height: 25px !important;
     width: 25px !important;
 }
-@media(max-width: 420px) {
+@media(max-width: 428px) {
     .headerOption {
         margin-right: 10px;
     }

@@ -22,6 +22,7 @@
     display: flex;
     padding: 10px;
     cursor: pointer;
+    align-items: baseline;
 }
 
 .widgets__article:hover {
@@ -34,7 +35,7 @@
 }
 
 .widgets__articleLeft > .MuiSvgIcon-root {
-    font-size: 15px;
+    font-size: 8px;
 }
 
 .widgets__articleRight {

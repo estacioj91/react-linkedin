@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Header from './Header.js';
 import Sidebar from './Sidebar.js'
@@ -12,8 +12,11 @@ import Widgets from './Widgets';
 function App() {
   const user = useSelector(selectUser)
   const dispatch = useDispatch();
-  useEffect(() =>{
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
     auth.onAuthStateChanged(userAuth => {
+      setTimeout(() => setLoading(false), 750)
       if(userAuth){
         dispatch(login({
           email: userAuth.email,
@@ -30,13 +33,21 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {!user ? (<Login/>) : (
+      {loading ? '': 
+      !user ? (<Login/>) : (
         <div className="app__body">
         <Sidebar/>
         <Feed/>
         <Widgets/>
       </div>
       )}
+      {/* {!user ? (<Login/>) : (
+        <div className="app__body">
+        <Sidebar/>
+        <Feed/>
+        <Widgets/>
+      </div>
+      )} */}
       
     </div>
   );
